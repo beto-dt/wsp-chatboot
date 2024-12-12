@@ -41,7 +41,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
                     console.error(`Failed to send message: ${error}`);
                 }
 
-            if(responsewsp.Body === 'si' || responsewsp.Body === 'Si' ){
+            if(responsewsp.Body === 'si' || responsewsp.Body === 'Si' || responsewsp.Body === 'SI' ){
                 try {
                     const response = await client.messages.create({
                         contentSid: "HX30a6482340d10cc76ce2c0f108cb230f",
