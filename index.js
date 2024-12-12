@@ -22,7 +22,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
                 from: "whatsapp:+14155238886",
                 to: "whatsapp:+593995068650",
             });
-            return res.status(200).json({`Message sent:  ${response.sid}`})
+            return res.status(200).json(`Message sent:  ${response.sid}`)
         } catch (error) {
             console.error(`Failed to send message: ${error}`);
         }
