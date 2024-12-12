@@ -19,6 +19,8 @@ index.use(bodyParser.urlencoded({ extended: false }));
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
         const responsewsp = req.body
+        const { type, to, variables } = req.body; // Tipo, destinatario y variables dinámicas
+        console.log(variables);
         let num;
         console.log(responsewsp);
          switch (num) {
