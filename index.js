@@ -18,7 +18,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
 
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
-        console.log(JSON.stringify(req.body));
+        console.log(...req.body);
 
         try {
             const response = await client.messages.create({
