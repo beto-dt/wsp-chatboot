@@ -1,0 +1,21 @@
+{
+  "name": "wsp-chatboot",
+  "version": "1.0.0",
+  "description": "wsp-chatboot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alberto De La Torre - Beto DT",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ngrok": "^5.0.0-beta.2",
+    "nodemon": "^3.1.7",
+    "twilio": "^5.3.7"
+  }
+}
