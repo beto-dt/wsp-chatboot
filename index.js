@@ -20,29 +20,42 @@ index.use(bodyParser.urlencoded({ extended: false }));
  index.post('/webhook', async (req, res) => {
         const responsewsp = req.body
         console.log(responsewsp.Body);
-        if(responsewsp.Body === 'hola'){
+        if(responsewsp.Body === 'hola' || responsewsp.Body === 'Hola' ){
             try {
                 const response = await client.messages.create({
-                    contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
+                    contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
                     from: "whatsapp:+14155238886",
                     to: "whatsapp:+593995068650",
                 });
-                return res.status(200).json(`${req.body}`)
             } catch (error) {
                 console.error(`Failed to send message: ${error}`);
             }
         } else {
-            try {
-                const response = await client.messages.create({
-                    contentSid: "HX30a6482340d10cc76ce2c0f108cb230f",
-                    from: "whatsapp:+14155238886",
-                    to: "whatsapp:+593995068650",
-                });
-                return res.status(200).json(`${req.body}`)
-            } catch (error) {
-                console.error(`Failed to send message: ${error}`);
+                try {
+                    const response = await client.messages.create({
+                        contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
+                        from: "whatsapp:+14155238886",
+                        to: "whatsapp:+593995068650",
+                    });
+                } catch (error) {
+                    console.error(`Failed to send message: ${error}`);
+                }
+
+            if(responsewsp.Body === 'si' || responsewsp.Body === 'Si' ){
+                try {
+                    const response = await client.messages.create({
+                        contentSid: "HX30a6482340d10cc76ce2c0f108cb230f",
+                        from: "whatsapp:+14155238886",
+                        to: "whatsapp:+593995068650",
+                    });
+                    return res.status(200).json(`${req.body}`)
+                } catch (error) {
+                    console.error(`Failed to send message: ${error}`);
+                }
             }
         }
+
+
 
 
 });
