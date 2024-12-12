@@ -20,17 +20,31 @@ index.use(bodyParser.urlencoded({ extended: false }));
  index.post('/webhook', async (req, res) => {
         const responsewsp = req.body
         console.log(responsewsp.Body);
-
-        try {
-            const response = await client.messages.create({
-                contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
-                from: "whatsapp:+14155238886",
-                to: "whatsapp:+593995068650",
-            });
-            return res.status(200).json(`${req.body}`)
-        } catch (error) {
-            console.error(`Failed to send message: ${error}`);
+        if(responsewsp.Body === 'hola'){
+            try {
+                const response = await client.messages.create({
+                    contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
+                    from: "whatsapp:+14155238886",
+                    to: "whatsapp:+593995068650",
+                });
+                return res.status(200).json(`${req.body}`)
+            } catch (error) {
+                console.error(`Failed to send message: ${error}`);
+            }
+        } else {
+            try {
+                const response = await client.messages.create({
+                    contentSid: "HX30a6482340d10cc76ce2c0f108cb230f",
+                    from: "whatsapp:+14155238886",
+                    to: "whatsapp:+593995068650",
+                });
+                return res.status(200).json(`${req.body}`)
+            } catch (error) {
+                console.error(`Failed to send message: ${error}`);
+            }
         }
+
+
 });
 
   index.get('/recived', (req, res) => {
