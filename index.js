@@ -18,7 +18,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
  index.post('/webhook', async (req, res) => {
         try {
             const response = await client.messages.create({
-                contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
+                contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
                 from: "whatsapp:+14155238886",
                 to: "whatsapp:+593995068650",
             });
@@ -28,14 +28,14 @@ index.use(bodyParser.urlencoded({ extended: false }));
         }
 });
 
-index.get('/recived', (req, res) => {
+  index.get('/recived', (req, res) => {
 
     const twiml = new twilio.twiml.MessagingResponse();
     twiml.message(responseMessage);
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twiml.toString());
-});
+  });
 // Inicia el servidor
 index.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
