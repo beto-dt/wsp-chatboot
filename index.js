@@ -23,7 +23,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
         console.log(responsewsp);
 
      if(responsewsp.Body === 'hola' || responsewsp.Body === 'Hola' ){
-            num++:
+            num = 1;
             console.log(num);
             try {
                 const response = await client.messages.create({
