@@ -17,13 +17,18 @@ index.use(bodyParser.urlencoded({ extended: false }));
 
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
+     const from = req.body.From; // Número de WhatsApp del remitente
+     const to = req.body.To; // Número de WhatsApp de Twilio
+     const body = req.body.Body; // Contenido del mensaje
+
+     // Mostrar los datos en la consola
         try {
             const response = await client.messages.create({
                 contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
                 from: "whatsapp:+14155238886",
                 to: "whatsapp:+593995068650",
             });
-            return res.status(200).json(`Message sent:  ${response.sid}`)
+            return res.status(200).json(`Mensaje recibido de ${from} hacia ${to}: ${body}`)
         } catch (error) {
             console.error(`Failed to send message: ${error}`);
         }
