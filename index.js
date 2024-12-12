@@ -30,7 +30,9 @@ index.use(bodyParser.urlencoded({ extended: false }));
              } catch (error) {
                  console.error(`Failed to send message: ${error}`);
              }
-         } else {
+         }
+
+       if (responsewsp.Body === 'muchas gracias' || responsewsp.Body === 'Muchas Gracias'){
              try {
                  const response = await client.messages.create({
                      contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
@@ -41,6 +43,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
                  console.error(`Failed to send message: ${error}`);
              }
          }
+
      if (responsewsp.Body === 'si' || responsewsp.Body === 'Si') {
          try {
              const response = await client.messages.create({
