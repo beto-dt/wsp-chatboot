@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
+const { MessagingResponse } = require('twilio').twiml;
 
 // Configura las credenciales de Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
@@ -29,12 +30,11 @@ index.use(bodyParser.urlencoded({ extended: false }));
 });
 
   index.get('/recived', (req, res) => {
+      const twiml = new MessagingResponse();
 
-    const twiml = new twilio.twiml.MessagingResponse();
-    twiml.message(responseMessage);
+      twiml.message('The Robots are coming! Head for the hills!');
 
-    res.writeHead(200, { 'Content-Type': 'text/xml' });
-    res.end(twiml.toString());
+      res.type('text/xml').send(twiml.toString());
   });
 // Inicia el servidor
 index.listen(PORT, () => {

@@ -74,23 +74,11 @@
       <workItem from="1734001767378" duration="242000" />
       <workItem from="1734002025455" duration="1551000" />
       <workItem from="1734003628836" duration="807000" />
-      <workItem from="1734004453150" duration="2715000" />
+      <workItem from="1734004453150" duration="3806000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/index.js</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
