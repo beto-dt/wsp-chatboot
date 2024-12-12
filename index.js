@@ -22,55 +22,34 @@ index.use(bodyParser.urlencoded({ extended: false }));
         let num = 0;
         console.log(responsewsp);
 
-     if(responsewsp.Body === 'hola' || responsewsp.Body === 'Hola' ){
-            num = 1;
-            console.log(num);
-            try {
-                const response = await client.messages.create({
-                    contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
-                    from: "whatsapp:+14155238886",
-                    to: "whatsapp:+593995068650",
-                });
-            } catch (error) {
-                console.error(`Failed to send message: ${error}`);
-            }
-        } else {
-                try {
-                    const response = await client.messages.create({
-                        contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
-                        from: "whatsapp:+14155238886",
-                        to: "whatsapp:+593995068650",
-                    });
-                } catch (error) {
-                    console.error(`Failed to send message: ${error}`);
-                }
+     if(num === 0) {
+         if (responsewsp.Body === 'hola' || responsewsp.Body === 'Hola') {
+             num = 1;
+             console.log(num);
+             try {
+                 const response = await client.messages.create({
+                     contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
+                     from: "whatsapp:+14155238886",
+                     to: "whatsapp:+593995068650",
+                 });
+             } catch (error) {
+                 console.error(`Failed to send message: ${error}`);
+             }
+         }
+     }
 
-            if(responsewsp.Body === 'si' || responsewsp.Body === 'Si' || responsewsp.Body === 'SI' ){
-                try {
-                    const response = await client.messages.create({
-                        contentSid: "HX30a6482340d10cc76ce2c0f108cb230f",
-                        from: "whatsapp:+14155238886",
-                        to: "whatsapp:+593995068650",
-                    });
-                    return res.status(200).json(`${req.body}`)
-                } catch (error) {
-                    console.error(`Failed to send message: ${error}`);
-                }
-            }
+     if(num === 1) {
+        try {
+            const response = await client.messages.create({
+                contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
+                from: "whatsapp:+14155238886",
+                to: "whatsapp:+593995068650",
+            });
+        } catch (error) {
+            console.error(`Failed to send message: ${error}`);
         }
-
-
-
-
+     }
 });
-
-  index.get('/recived', (req, res) => {
-      const twiml = new MessagingResponse();
-
-      twiml.message('The Robots are coming! Head for the hills!');
-
-      res.type('text/xml').send(twiml.toString());
-  });
 // Inicia el servidor
 index.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
