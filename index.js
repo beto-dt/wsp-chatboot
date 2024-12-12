@@ -19,7 +19,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
         const responsewsp = req.body
-        const num = 0;
+        let num;
         console.log(responsewsp);
          switch (num) {
              case 0:
@@ -50,6 +50,20 @@ index.use(bodyParser.urlencoded({ extended: false }));
                  }
 
                  break;
+
+             default:
+                 if (responsewsp.Body === 'hola' || responsewsp.Body === 'Hola') {
+                     try {
+                         const response = await client.messages.create({
+                             contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
+                             from: "whatsapp:+14155238886",
+                             to: "whatsapp:+593995068650",
+                         });
+                         num = 1;
+                     } catch (error) {
+                         console.error(`Failed to send message: ${error}`);
+                     }
+                 }
          }
 
 });
