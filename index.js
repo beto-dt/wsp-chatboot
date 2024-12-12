@@ -19,8 +19,9 @@ index.use(bodyParser.urlencoded({ extended: false }));
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
         const responsewsp = req.body
-        console.log(responsewsp.Body);
-        if(responsewsp.Body === 'hola' || responsewsp.Body === 'Hola' ){
+        console.log(responsewsp);
+
+     if(responsewsp.Body === 'hola' || responsewsp.Body === 'Hola' ){
             try {
                 const response = await client.messages.create({
                     contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
