@@ -28,6 +28,14 @@ index.use(bodyParser.urlencoded({ extended: false }));
         }
 });
 
+index.get('/recived', (req, res) => {
+
+    const twiml = new twilio.twiml.MessagingResponse();
+    twiml.message(responseMessage);
+
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twiml.toString());
+});
 // Inicia el servidor
 index.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
