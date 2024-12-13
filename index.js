@@ -49,9 +49,14 @@ index.use(bodyParser.urlencoded({ extended: false }));
          from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
          to: `whatsapp:+593995068650`,
          body: messageContent,
-         persistentAction: buttons.map(
-             (btn) => `${btn.type === 'url' ? 'https://' : ''}${btn.url || btn.payload}`
-         ),
+         action: {
+             buttons: buttons.map((btn) => ({
+                 type: btn.type,
+                 text: btn.text,
+                 ...(btn.type === 'url' && { url: btn.url }),
+                 ...(btn.type === 'reply' && { payload: btn.payload }),
+             })),
+         },
      });
 });
 templateRoutes(index);
