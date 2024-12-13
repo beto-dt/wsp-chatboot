@@ -53,7 +53,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
          interactive: {
              type: 'button',
              body: {
-                 text: 'Selecciona una opción:',
+                 text: messageContent,
              },
              action: {
                  buttons: [
