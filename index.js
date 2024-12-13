@@ -44,6 +44,8 @@ index.use(bodyParser.urlencoded({ extended: false }));
          }
      });
 
+     console.log(buttons);
+
      // Enviar mensaje con Twilio
      await client.messages.create({
          from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
