@@ -51,7 +51,18 @@ index.use(bodyParser.urlencoded({ extended: false }));
          from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
          to: `whatsapp:+593995068650`,
          body: messageContent,
-         action: buttons
+         interactive: {
+             type: 'button',
+             body: {
+                 text: 'Selecciona una opción:',
+             },
+             action: {
+                 buttons: [
+                     { type: 'reply', text: 'Más Información', payload: 'INFO' },
+                     { type: 'url', text: 'Visitar Sitio Web', url: 'https://example.com' },
+                 ],
+             },
+         }
      });
 });
 templateRoutes(index);
