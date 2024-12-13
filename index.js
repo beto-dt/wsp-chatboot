@@ -23,7 +23,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
      const responsewsp = req.body
      console.log(responsewsp);
      const variables = ['Juan'];
-     const template = await obtenerTemplate('welcome_message_1');
+     const template = await obtenerTemplate(responsewsp);
      if (!template) {
          console.error('Template no encontrado');
          return;
