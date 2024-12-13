@@ -40,7 +40,8 @@ const guardarTemplate =  async (req, res) => {
 }
 
 const obtenerTemplate =  async (req, res) => {
-    const { name } = req.body;
+    const { name } = req.params;
+
 
     const connection = await pool.getConnection();
     try {
