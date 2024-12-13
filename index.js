@@ -11,7 +11,7 @@ const client = twilio(accountSid, authToken);
 
 const index = express();
 const PORT = process.env.PORT || 3000;
-const pool = require('./config/config');
+const templateRoutes = require('./routes/templateRoutes');
 
 // Middleware para analizar los datos entrantes
 index.use(express.json());
@@ -67,6 +67,8 @@ index.use(bodyParser.urlencoded({ extended: false }));
          }
      }
 });
+templateRoutes(app);
+
 // Inicia el servidor
 index.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
