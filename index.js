@@ -22,7 +22,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
  index.post('/webhook', async (req, res) => {
      const responsewsp = req.body
      console.log(responsewsp);
-     const template = await obtenerTemplate(templateName);
+     const template = await obtenerTemplate('welcome_message_1');
      if (!template) {
          console.error('Template no encontrado');
          return;
