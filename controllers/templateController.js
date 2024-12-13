@@ -25,10 +25,16 @@ const guardarTemplate =  async (req, res) => {
         }*/
 
         await connection.commit();
-        console.log('Template y botones guardados correctamente.');
+        return res.status(200).json({
+            status: 'success',
+            message: 'Template y botones guardados correctamente.',
+        });
     } catch (err) {
         await connection.rollback();
-        console.error('Error al guardar el template:', err);
+        return res.status(200).json({
+            status: 'error',
+            message: `Error al guardar el template: ${err}`
+        });
     } finally {
         connection.release();
     }
