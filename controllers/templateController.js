@@ -30,7 +30,7 @@ const guardarTemplate =  async (req, res) => {
         });
     } catch (err) {
         await connection.rollback();
-        return res.status(200).json({
+        return res.status(500).json({
             status: 'error',
             message: `Error al guardar el template: ${err}`
         });
@@ -64,10 +64,15 @@ const obtenerTemplate =  async (req, res) => {
         );
 
         template.buttons = buttons;*/
-        return template;
+        return res.status(200).json({
+            status: 'success',
+            message: template,
+        });
     } catch (err) {
-        console.error('Error al obtener el template:', err);
-        return null;
+        return res.status(500).json({
+            status: 'error',
+            message: `Error al guardar el template: ${err}`
+        });
     } finally {
         connection.release();
     }
