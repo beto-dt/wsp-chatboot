@@ -58,12 +58,12 @@ const obtenerTemplate =  async (req, res) => {
         const template = templates[0];
 
         // Obtener botones relacionados
-        /*const [buttons] = await connection.execute(
+        const [buttons] = await connection.execute(
             'SELECT * FROM buttons WHERE template_id = ?',
             [template.id]
         );
 
-        template.buttons = buttons;*/
+        template.buttons = buttons;
         return res.status(200).json({
             status: 'success',
             message: template,
