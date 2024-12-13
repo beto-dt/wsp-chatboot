@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const { MessagingResponse } = require('twilio').twiml;
-const { obtenerTemplate } = require('../controllers/templateController');
+const { obtenerTemplate } = require('./controllers/templateController');
 
 // Configura las credenciales de Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
