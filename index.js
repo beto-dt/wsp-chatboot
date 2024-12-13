@@ -20,7 +20,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
 
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
-     const responsewsp = req.body
+     const responsewsp = req.Body
      console.log(responsewsp);
      const variables = ['Juan'];
      const template = await obtenerTemplate(responsewsp);
