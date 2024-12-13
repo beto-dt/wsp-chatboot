@@ -67,7 +67,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
          }
      }
 });
-templateRoutes(app);
+templateRoutes(index);
 
 // Inicia el servidor
 index.listen(PORT, () => {
