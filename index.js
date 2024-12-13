@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const { MessagingResponse } = require('twilio').twiml;
+const { obtenerTemplate } = require('../controllers/templateController');
 
 // Configura las credenciales de Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
@@ -19,53 +20,38 @@ index.use(bodyParser.urlencoded({ extended: false }));
 
 // Endpoint para el webhook
  index.post('/webhook', async (req, res) => {
-        const responsewsp = req.body
-        console.log(responsewsp);
-         if (responsewsp.Body === 'hola' || responsewsp.Body === 'Hola') {
-             try {
-                 const response = await client.messages.create({
-                     contentSid: "HX2346a7d111c0e6f1870e533d427d0a45",
-                     from: "whatsapp:+14155238886",
-                     to: "whatsapp:+593995068650",
-                 });
-             } catch (error) {
-                 console.error(`Failed to send message: ${error}`);
-             }
-         }
-
-       if (responsewsp.Body === 'muchas gracias' || responsewsp.Body === 'Muchas Gracias'){
-             try {
-                 const response = await client.messages.create({
-                     contentSid: "HX788423ed6cdfde27519433fb5b2f66c7",
-                     from: "whatsapp:+14155238886",
-                     to: "whatsapp:+593995068650",
-                 });
-             } catch (error) {
-                 console.error(`Failed to send message: ${error}`);
-             }
-         }
-
-     if (responsewsp.Body === 'si' || responsewsp.Body === 'Si') {
-         try {
-             const response = await client.messages.create({
-                 contentSid: "HX59d3de8a1ab212deb0084ae4137b7eb5",
-                 from: "whatsapp:+14155238886",
-                 to: "whatsapp:+593995068650",
-             });
-         } catch (error) {
-             console.error(`Failed to send message: ${error}`);
-         }
-     } else if ( responsewsp.Body === 'no' || responsewsp.Body === 'No'){
-         try {
-             const response = await client.messages.create({
-                 contentSid: "HXd99296097dcbef10ba67e0a5d2c43899",
-                 from: "whatsapp:+14155238886",
-                 to: "whatsapp:+593995068650",
-             });
-         } catch (error) {
-             console.error(`Failed to send message: ${error}`);
-         }
+     const responsewsp = req.body
+     console.log(responsewsp);
+     const template = await obtenerTemplate(templateName);
+     if (!template) {
+         console.error('Template no encontrado');
+         return;
      }
+
+     // Reemplazar variables en el contenido
+     let messageContent = template.content;
+     variables.forEach((value, index) => {
+         messageContent = messageContent.replace(`{{${index + 1}}}`, value);
+     });
+
+     // Crear botones dinámicos
+     const buttons = template.buttons.map((button) => {
+         if (button.type === 'quick_reply') {
+             return { type: 'quick_reply', text: button.label, payload: button.action };
+         } else if (button.type === 'url') {
+             return { type: 'url', text: button.label, url: button.action };
+         }
+     });
+
+     // Enviar mensaje con Twilio
+     await client.messages.create({
+         from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
+         to: `whatsapp:+593995068650`,
+         body: messageContent,
+         persistentAction: buttons.map(
+             (btn) => `${btn.type === 'url' ? 'https://' : ''}${btn.url || btn.payload}`
+         ),
+     });
 });
 templateRoutes(index);
 

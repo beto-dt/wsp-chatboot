@@ -39,10 +39,7 @@ const guardarTemplate =  async (req, res) => {
     }
 }
 
-const obtenerTemplate =  async (req, res) => {
-    const { name } = req.params;
-
-
+async function obtenerTemplate(name) {
     const connection = await pool.getConnection();
     try {
         // Obtener el template por nombre
@@ -64,15 +61,10 @@ const obtenerTemplate =  async (req, res) => {
         );
 
         template.buttons = buttons;
-        return res.status(200).json({
-            status: 'success',
-            message: template,
-        });
+        return template;
     } catch (err) {
-        return res.status(500).json({
-            status: 'error',
-            message: `Error al guardar el template: ${err}`
-        });
+        console.error('Error al obtener el template:', err);
+        return null;
     } finally {
         connection.release();
     }
