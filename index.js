@@ -28,12 +28,6 @@ index.use(bodyParser.urlencoded({ extended: false }));
          return;
      }
 
-     // Reemplazar variables en el contenido
-     let messageContent = template.content;
-     variables.forEach((value, index) => {
-         messageContent = messageContent.replace(`{{${index + 1}}}`, value);
-     });
-
      // Crear botones dinámicos
      const buttons = template.buttons.map((button) => {
          if (button.type === 'quick_reply') {
