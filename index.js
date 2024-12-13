@@ -22,6 +22,7 @@ index.use(bodyParser.urlencoded({ extended: false }));
  index.post('/webhook', async (req, res) => {
      const responsewsp = req.body
      console.log(responsewsp);
+     const variables = ['Juan'];
      const template = await obtenerTemplate('welcome_message_1');
      if (!template) {
          console.error('Template no encontrado');
@@ -30,9 +31,9 @@ index.use(bodyParser.urlencoded({ extended: false }));
 
      // Reemplazar variables en el contenido
      let messageContent = template.content;
-     /*variables.forEach((value, index) => {
+     variables.forEach((value, index) => {
          messageContent = messageContent.replace(`{{${index + 1}}}`, value);
-     });*/
+     });
 
      // Crear botones dinámicos
      const buttons = template.buttons.map((button) => {
