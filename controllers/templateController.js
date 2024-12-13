@@ -17,7 +17,10 @@ const guardarTemplate =  async (req, res) => {
 
         // Inserta los botones asociados
         for (const button of buttons) {
-            console.log(button);
+            await connection.execute(
+                'INSERT INTO buttons (template_id, type, label, action) VALUES (?, ?, ?, ?)',
+                [templateId, button.type, button.label, button.action]
+            );
         }
 
         await connection.commit();
