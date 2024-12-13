@@ -1,4 +1,4 @@
-const pool = require('./config/config');
+const pool = require('../config/config');
 
 async function guardarTemplate(name, content, language, buttons) {
     const connection = await pool.getConnection();
