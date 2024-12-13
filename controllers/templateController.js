@@ -1,7 +1,7 @@
 const pool = require('../config/config');
 
 const guardarTemplate =  async (req, res) => {
-    const { name, content, language, btns } = req.body;
+    const { name, content, language, buttons } = req.body;
 
     const connection = await pool.getConnection();
     try {
@@ -14,15 +14,11 @@ const guardarTemplate =  async (req, res) => {
         );
 
         const templateId = templateResult.insertId;
-        console.log(templateId);
 
-        /* Inserta los botones asociados
+        // Inserta los botones asociados
         for (const button of buttons) {
-            await connection.execute(
-                'INSERT INTO buttons (template_id, type, label, action) VALUES (?, ?, ?, ?)',
-                [templateId, button.type, button.label, button.action]
-            );
-        }*/
+            console.log(button);
+        }
 
         await connection.commit();
         return res.status(200).json({
