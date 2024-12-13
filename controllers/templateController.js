@@ -1,6 +1,8 @@
 const pool = require('../config/config');
 
-async function guardarTemplate(name, content, language, buttons) {
+const guardarTemplate =  async (req, res) => {
+    const { name, content, language, btns } = req.body;
+
     const connection = await pool.getConnection();
     try {
         await connection.beginTransaction();
@@ -12,14 +14,15 @@ async function guardarTemplate(name, content, language, buttons) {
         );
 
         const templateId = templateResult.insertId;
+        console.log(templateId);
 
-        // Inserta los botones asociados
+        /* Inserta los botones asociados
         for (const button of buttons) {
             await connection.execute(
                 'INSERT INTO buttons (template_id, type, label, action) VALUES (?, ?, ?, ?)',
                 [templateId, button.type, button.label, button.action]
             );
-        }
+        }*/
 
         await connection.commit();
         console.log('Template y botones guardados correctamente.');
@@ -31,7 +34,9 @@ async function guardarTemplate(name, content, language, buttons) {
     }
 }
 
-async function obtenerTemplate(name) {
+const obtenerTemplate =  async (req, res) => {
+    const { name } = req.body;
+
     const connection = await pool.getConnection();
     try {
         // Obtener el template por nombre
@@ -47,12 +52,12 @@ async function obtenerTemplate(name) {
         const template = templates[0];
 
         // Obtener botones relacionados
-        const [buttons] = await connection.execute(
+        /*const [buttons] = await connection.execute(
             'SELECT * FROM buttons WHERE template_id = ?',
             [template.id]
         );
 
-        template.buttons = buttons;
+        template.buttons = buttons;*/
         return template;
     } catch (err) {
         console.error('Error al obtener el template:', err);
