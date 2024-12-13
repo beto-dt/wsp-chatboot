@@ -50,7 +50,6 @@ index.use(bodyParser.urlencoded({ extended: false }));
      await client.messages.create({
          from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
          to: `whatsapp:+593995068650`,
-         body: messageContent,
          interactive: {
              type: 'button',
              body: {
@@ -59,10 +58,10 @@ index.use(bodyParser.urlencoded({ extended: false }));
              action: {
                  buttons: [
                      { type: 'reply', text: 'Más Información', payload: 'INFO' },
-                     { type: 'url', text: 'Visitar Sitio Web', url: 'https://example.com' },
+                     { type: 'url', text: 'Ir al Sitio', url: 'https://example.com' },
                  ],
              },
-         }
+         },
      });
 });
 templateRoutes(index);
