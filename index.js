@@ -50,7 +50,15 @@ index.use(bodyParser.urlencoded({ extended: false }));
      await client.messages.create({
          from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
          to: `whatsapp:+593995068650`,
-         body: messageContent,
+         interactive: {
+             type: 'button',
+             body: {
+                 text: messageContent,
+             },
+             action: {
+                 buttons,
+             },
+         },
      });
 });
 templateRoutes(index);

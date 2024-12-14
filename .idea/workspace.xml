@@ -47,24 +47,11 @@
       <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="wsp-chatboot" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="wsp-chatboot" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -99,7 +86,11 @@
       <workItem from="1734092388637" duration="18000" />
       <workItem from="1734092424732" duration="6000" />
       <workItem from="1734092518364" duration="5626000" />
-      <workItem from="1734099275630" duration="2032000" />
+      <workItem from="1734099275630" duration="2503000" />
+      <workItem from="1734215917259" duration="9000" />
+      <workItem from="1734215947179" duration="11000" />
+      <workItem from="1734215974957" duration="8000" />
+      <workItem from="1734217512455" duration="40000" />
     </task>
     <servers />
   </component>
