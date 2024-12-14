@@ -47,19 +47,36 @@ index.use(bodyParser.urlencoded({ extended: false }));
      console.log(buttons);
 
      // Enviar mensaje con Twilio
-     await client.messages.create({
-         from: 'whatsapp:+14155238886', // Tu número de WhatsApp Twilio
-         to: `whatsapp:+593995068650`,
-         interactive: {
-             type: 'button',
-             body: {
-                 text: messageContent,
+     try {
+         const message = await client.messages.create({
+             from: 'whatsapp:+14155238886', // Número de WhatsApp Twilio
+             to: 'whatsapp:+593995068650', // Número del destinatario
+             interactive: {
+                 type: 'button',
+                 body: {
+                     text: 'Selecciona una opción:', // Texto principal
+                 },
+                 action: {
+                     buttons: [
+                         {
+                             type: 'reply',
+                             text: 'Más Información',
+                             payload: 'INFO',
+                         },
+                         {
+                             type: 'url',
+                             text: 'Ir al Sitio',
+                             url: 'https://example.com',
+                         },
+                     ],
+                 },
              },
-             action: {
-                 buttons,
-             },
-         },
-     });
+         });
+
+         console.log('Mensaje enviado con éxito:', message.sid);
+     } catch (error) {
+         console.error('Error al enviar mensaje:', error.message);
+     }
 });
 templateRoutes(index);
 
