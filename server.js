@@ -42,7 +42,7 @@ server.post('/upload', upload.single('multimedia'), async (req, res) => {
         const externalEndpoint = 'https://general.qa-advantagemkt.mx/demo-textract/bachoco-core/app/validaTextract'; // Cambia por tu URL externa
         const response = await axios.post(externalEndpoint, formData, { headers });
 
-        console.log('Respuesta del endpoint externo:', response.data.externalResponse);
+        console.log('Respuesta del endpoint externo:', response.data['externalResponse']);
 
         // Responder al cliente que subió la imagen
         res.status(200).json({
