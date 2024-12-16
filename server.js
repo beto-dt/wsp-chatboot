@@ -30,9 +30,8 @@ server.post('/upload', upload.single('multimedia'), async (req, res) => {
         }
 
         const formData = new FormData();
-        formData.append('file', req.file.buffer, req.file.originalname); // Agregar archivo
-        formData.append('additionalField', 'valor'); // Agregar campos adicionales si es necesario
-
+        formData.append('file', req.file, req.file.originalname); // Agregar archivo
+        console.log(formData);
         // Configurar los encabezados (incluyen los de form-data)
         const headers = {
             ...formData.getHeaders(), // Encabezados generados por FormData
