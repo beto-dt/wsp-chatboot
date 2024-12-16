@@ -35,26 +35,7 @@ const hook =  async (req, res) => {
         const message = await client.messages.create({
             from: 'whatsapp:+5215553512599',
             to: 'whatsapp:+593995068650',
-            interactive: {
-                type: 'button',
-                body: {
-                    text: messageContent, // Texto principal
-                },
-                action: {
-                    buttons: [
-                        {
-                            type: 'reply',
-                            text: 'Más Información',
-                            payload: 'INFO',
-                        },
-                        {
-                            type: 'url',
-                            text: 'Ir al Sitio',
-                            url: 'https://example.com',
-                        },
-                    ],
-                },
-            },
+            body: messageContent,
         });
 
         return res.status(200).json({
