@@ -30,18 +30,25 @@ const hook =  async (req, res) => {
         }
     });
 
-    await client.messages.create({
-            from: 'whatsapp:+5215553512599', // Número de Twilio
+    client.messages
+        .create({
+            from: 'whatsapp:+14155238886', // Número de Twilio
             to: 'whatsapp:+593995068650', // Número del usuario
             interactive: {
                 type: 'button',
                 body: {
-                    text: '¿Qué te gustaría hacer?',
+                    text: 'Selecciona una opción:', // Texto que aparece encima de los botones
                 },
                 action: {
                     buttons: [
-                        { type: 'reply', reply: { id: 'info', title: 'Más Información' } },
-                        { type: 'reply', reply: { id: 'support', title: 'Soporte Técnico' } },
+                        {
+                            type: 'reply',
+                            reply: { id: 'info', title: 'Más Información' },
+                        },
+                        {
+                            type: 'reply',
+                            reply: { id: 'support', title: 'Soporte Técnico' },
+                        },
                     ],
                 },
             },
