@@ -30,8 +30,27 @@ const hook =  async (req, res) => {
         }
     });
 
+    await client.messages.create({
+            from: 'whatsapp:+5215553512599', // Número de Twilio
+            to: 'whatsapp:+593995068650', // Número del usuario
+            interactive: {
+                type: 'button',
+                body: {
+                    text: '¿Qué te gustaría hacer?',
+                },
+                action: {
+                    buttons: [
+                        { type: 'reply', reply: { id: 'info', title: 'Más Información' } },
+                        { type: 'reply', reply: { id: 'support', title: 'Soporte Técnico' } },
+                    ],
+                },
+            },
+        })
+        .then((message) => console.log('Mensaje enviado con SID:', message.sid))
+        .catch((error) => console.error('Error al enviar el mensaje:', error));
+
     // Enviar mensaje con Twilio
-    try {
+    /*try {
         const message = await client.messages.create({
             from: 'whatsapp:+5215553512599',
             to: 'whatsapp:+593995068650',
@@ -67,7 +86,7 @@ const hook =  async (req, res) => {
             status: 'error',
             message: `Error al enviar mensaje:: ${error.message}`,
         })
-    }
+    }*/
 }
 
 module.exports = {
