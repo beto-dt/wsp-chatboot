@@ -56,6 +56,7 @@ const hook =  async (req, res) => {
                 },
             },
         });
+        console.log(message);
 
         return res.status(200).json({
             status: 'success',
