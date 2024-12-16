@@ -12,16 +12,15 @@ async function textTrack(file) {
             ).toString('base64')}`, // Autenticación con Twilio
         },
     });
-    console.log(mediaResponse);
-    /*try {
+    try {
         // Verificar si se ha recibido un archivo
-        if (file) {
+        if (mediaResponse) {
             console.log( 'No se recibió ningún archivo');
         }
 
         // Crear un objeto FormData
         const formData = new FormData();
-        formData.append('multimedia', file.buffer, file.originalname); // Buffer como archivo
+        formData.append('multimedia', mediaResponse.buffer, mediaResponse.originalname); // Buffer como archivo
         // Configurar los encabezados (incluyen los de form-data)
         const headers = {
             ...formData.getHeaders(), // Encabezados generados por FormData
@@ -35,7 +34,7 @@ async function textTrack(file) {
 
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-    }*/
+    }
 }
 
 module.exports = {
