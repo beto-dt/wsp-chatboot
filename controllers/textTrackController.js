@@ -2,7 +2,8 @@ const FormData = require('form-data');
 const axios = require('axios');
 
 async function textTrack(file) {
-    try {
+    console.log(file);
+    /*try {
         // Verificar si se ha recibido un archivo
         if (file) {
             console.log( 'No se recibió ningún archivo');
@@ -24,7 +25,7 @@ async function textTrack(file) {
 
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-    }
+    }*/
 }
 
 module.exports = {
