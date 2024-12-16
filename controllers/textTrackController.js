@@ -15,6 +15,8 @@ async function textTrack(file) {
             },
         });
 
+        console.log('mediaResponse',mediaResponse);
+
         // Crear un objeto FormData
         const formData = new FormData();
         formData.append('multimedia', mediaResponse.buffer, mediaResponse.originalname); // Buffer como archivo
