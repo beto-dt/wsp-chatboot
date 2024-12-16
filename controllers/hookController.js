@@ -1,4 +1,11 @@
-const pool = require("../config/config");
+const twilio = require('twilio');
+const { obtenerTemplate } = require('../controllers/templateController');
+
+// Configura las credenciales de Twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
+const authToken = process.env.TWILIO_AUTH_TOKEN;   // Reemplaza con tu Auth Token
+const client = twilio(accountSid, authToken);
+
 const hook =  async (req, res) => {
     const responsewsp = req.body.Body
     const variables = ['Juan'];

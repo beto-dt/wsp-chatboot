@@ -2,9 +2,9 @@
   "name": "wsp-chatboot",
   "version": "1.0.0",
   "description": "wsp-chatboot",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alberto De La Torre - Beto DT",
