@@ -30,30 +30,12 @@ const hook =  async (req, res) => {
         }
     });
 
-    client.messages
-        .create({
-            from: 'whatsapp:+5215553512599', // Número de Twilio
-            to: 'whatsapp:+593995068650', // Número del usuario
-            interactive: {
-                type: 'button',
-                body: {
-                    text: 'Selecciona una opción:', // Texto que aparece encima de los botones
-                },
-                action: {
-                    buttons: [
-                        {
-                            type: 'reply',
-                            reply: { id: 'info', title: 'Más Información' },
-                        },
-                        {
-                            type: 'reply',
-                            reply: { id: 'support', title: 'Soporte Técnico' },
-                        },
-                    ],
-                },
-            },
-        })
-        .then((message) => console.log('Mensaje enviado con SID:', message.sid))
+    const message = await client.messages.create({
+        contentSid: "HXcd75ecabd2ce7e8eae9fada1630fa685",
+        contentVariables: JSON.stringify({ 1: "Name" }),
+        from: "whatsapp:+5215553512599",
+        to: "whatsapp:+593995068650",
+    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
         .catch((error) => console.error('Error al enviar el mensaje:', error));
 
     // Enviar mensaje con Twilio
