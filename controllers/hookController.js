@@ -16,6 +16,10 @@ const hook =  async (req, res) => {
         return;
     }
 
+    if(responsewsp.MessageType === 'image'){
+            console.log(responsewsp.MediaUrl0);
+    }
+
     // Reemplazar variables en el contenido
     let messageContent = template.content;
     variables.forEach((value, index) => {
