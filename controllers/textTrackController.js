@@ -1,7 +1,7 @@
 const FormData = require('form-data');
 const axios = require('axios');
 
-const textTrack =  ('/upload', upload.single('multimedia'), async (req, res) => {
+const textTrack =  async (req, res) => {
     try {
         // Verificar si se ha recibido un archivo
         if (!req.file) {
