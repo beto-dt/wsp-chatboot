@@ -7,7 +7,8 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;   // Reemplaza con tu Auth Toke
 const client = twilio(accountSid, authToken);
 
 const hook =  async (req, res) => {
-    //const responsewsp = req.body.Body
+    const responsewsp = req.body;
+    console.log(responsewsp);
     const variables = ['Juan'];
     const template = await obtenerTemplate('test');
     if (!template) {
