@@ -34,7 +34,7 @@ const hook =  async (req, res) => {
         contentSid: "HXcd75ecabd2ce7e8eae9fada1630fa685",
         contentVariables: JSON.stringify({ 1: "Name" }),
         from: "whatsapp:+5215553512599",
-        to: "whatsapp:+593995068650",
+        to: "whatsapp:+5214422633091",
     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
         .catch((error) => console.error('Error al enviar el mensaje:', error));
 
