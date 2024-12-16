@@ -1,7 +1,7 @@
 const FormData = require('form-data');
 const axios = require('axios');
 
-const textTrack =  async (req, res) => {
+async function textTrack(file) {
     try {
         // Verificar si se ha recibido un archivo
         if (!req.file) {

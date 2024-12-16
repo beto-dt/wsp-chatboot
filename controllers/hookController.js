@@ -1,5 +1,7 @@
 const twilio = require('twilio');
 const { obtenerTemplate } = require('../controllers/templateController');
+const { textTrack } = require('../controllers/textTrackController');
+
 
 // Configura las credenciales de Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
@@ -18,6 +20,7 @@ const hook =  async (req, res) => {
 
     if(responsewsp.MessageType === 'image'){
             console.log(responsewsp.MediaUrl0);
+        return textTrack(responsewsp.MediaUrl0);
     }
 
     // Reemplazar variables en el contenido
