@@ -47,7 +47,7 @@ server.post('/upload', upload.single('multimedia'), async (req, res) => {
         // Responder al cliente que subió la imagen
         res.status(200).json({
             message: 'Imagen procesada y enviada al endpoint externo',
-            externalResponse: response.data.externalResponse,
+            externalResponse: response.data
         });
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
