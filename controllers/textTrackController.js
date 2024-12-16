@@ -3,20 +3,17 @@ const axios = require('axios');
 
 async function textTrack(file) {
 
-    // Descargar el archivo usando Axios
-    const mediaResponse = await axios.get(file, {
-        responseType: 'arraybuffer', // Descargar datos como buffer
-        headers: {
-            Authorization: `Basic ${Buffer.from(
-                `${process.env.TWILIO_ACCOUNT_SID}:${process.env.TWILIO_AUTH_TOKEN}`
-            ).toString('base64')}`, // Autenticación con Twilio
-        },
-    });
+
     try {
-        // Verificar si se ha recibido un archivo
-        if (mediaResponse) {
-            console.log( 'No se recibió ningún archivo');
-        }
+        // Descargar el archivo usando Axios
+        const mediaResponse = await axios.get(file, {
+            responseType: 'arraybuffer', // Descargar datos como buffer
+            headers: {
+                Authorization: `Basic ${Buffer.from(
+                    `${process.env.TWILIO_ACCOUNT_SID}:${process.env.TWILIO_AUTH_TOKEN}`
+                ).toString('base64')}`, // Autenticación con Twilio
+            },
+        });
 
         // Crear un objeto FormData
         const formData = new FormData();
