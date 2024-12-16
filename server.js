@@ -32,16 +32,12 @@ server.post('/upload', upload.single('multimedia'), async (req, res) => {
 
         // Crear un objeto FormData
         const formData = new FormData();
-        formData.append('file', req.file.buffer, req.file.originalname); // Buffer como archivo
-        formData.append('description', 'Este es un archivo enviado desde Node.js'); // Campo adicional
-        // Configurar los encabezados (incluyen los de form-data)
-        const headers = {
-            ...formData.getHeaders(), // Encabezados generados por FormData
-        };
+        formData.append('multimedia', req.file); // Buffer como archivo
+
 
         // Enviar la imagen al endpoint externo
         const externalEndpoint = 'https://general.qa-advantagemkt.mx/demo-textract/bachoco-core/app/validaTextract'; // Cambia por tu URL externa
-        const response = await axios.post(externalEndpoint, formData, { headers });
+        const response = await axios.post(externalEndpoint, formData);
 
         console.log('Respuesta del endpoint externo:', response.data);
 
