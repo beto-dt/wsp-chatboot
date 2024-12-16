@@ -2,7 +2,17 @@ const FormData = require('form-data');
 const axios = require('axios');
 
 async function textTrack(file) {
-    console.log(file);
+
+    // Descargar el archivo usando Axios
+    const mediaResponse = await axios.get(file, {
+        responseType: 'arraybuffer', // Descargar datos como buffer
+        headers: {
+            Authorization: `Basic ${Buffer.from(
+                `${process.env.TWILIO_ACCOUNT_SID}:${process.env.TWILIO_AUTH_TOKEN}`
+            ).toString('base64')}`, // Autenticación con Twilio
+        },
+    });
+    console.log(mediaResponse);
     /*try {
         // Verificar si se ha recibido un archivo
         if (file) {
