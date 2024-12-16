@@ -22,7 +22,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Endpoint que recibe exclusivamente `form-data` con multimedia
-server.post('/upload', upload.single('file'), (req, res) => {
+server.post('/upload', upload.single('multimedia'), (req, res) => {
     try {
         // Verificar si se ha recibido un archivo
         if (!req.file) {
