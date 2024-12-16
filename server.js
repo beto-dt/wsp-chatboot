@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-
+const FormData = require('form-data');
 const server = express();
 const PORT = process.env.PORT || 3000;
 const templateRoutes = require('./routes/templateRoutes');
@@ -29,9 +29,10 @@ server.post('/upload', upload.single('multimedia'), async (req, res) => {
             return res.status(400).json({ error: 'No se recibió ningún archivo' });
         }
 
+        // Crear un objeto FormData
         const formData = new FormData();
-        formData.append('file', req.file, req.file.originalname); // Agregar archivo
-        console.log(formData);
+        formData.append('file', req.file.buffer, req.file.originalname); // Buffer como archivo
+        formData.append('description', 'Este es un archivo enviado desde Node.js'); // Campo adicional
         // Configurar los encabezados (incluyen los de form-data)
         const headers = {
             ...formData.getHeaders(), // Encabezados generados por FormData
