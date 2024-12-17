@@ -32,7 +32,11 @@ async function textTrack(file, mediaType) {
         const externalEndpoint = 'https://general.qa-advantagemkt.mx/demo-textract/bachoco-core/app/validaTextract'; // Cambia por tu URL externa
         const response = await axios.post(externalEndpoint, formData, { headers });
 
-        console.log('Respuesta del endpoint externo:', response.data.validacionTicket.mensajeValidacion);
+        await client.messages.create({
+            from: 'whatsapp:+5215553512599',
+            to: 'whatsapp:+593995068650',
+            body: response.data.validacionTicket.mensajeValidacion
+        });
 
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
