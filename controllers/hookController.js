@@ -20,7 +20,7 @@ const hook =  async (req, res) => {
 
     if(responsewsp.MessageType === 'image'){
             console.log(responsewsp.MediaUrl0);
-        return textTrack(responsewsp.MediaUrl0);
+        return textTrack(responsewsp.MediaUrl0, responsewsp.MediaContentType0);
     }
 
     // Reemplazar variables en el contenido

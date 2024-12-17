@@ -1,7 +1,7 @@
 const FormData = require('form-data');
 const axios = require('axios');
 
-async function textTrack(file) {
+async function textTrack(file, mediaType) {
 
 
     try {
