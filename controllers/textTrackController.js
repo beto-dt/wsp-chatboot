@@ -1,6 +1,11 @@
+const twilio = require('twilio');
 const FormData = require('form-data');
 const axios = require('axios');
 
+// Configura las credenciales de Twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
+const authToken = process.env.TWILIO_AUTH_TOKEN;   // Reemplaza con tu Auth Token
+const client = twilio(accountSid, authToken);
 async function textTrack(file, mediaType) {
 
 
