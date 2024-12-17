@@ -15,8 +15,6 @@ async function textTrack(file) {
             },
         });
 
-        console.log('mediaResponse',mediaResponse);
-
         // Crear un objeto FormData
         const formData = new FormData();
         const fileName = `imagen_${Date.now()}.${mediaType.split('/')[1]}`; // Generar nombre de archivo dinámico
