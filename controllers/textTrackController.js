@@ -19,7 +19,12 @@ async function textTrack(file) {
 
         // Crear un objeto FormData
         const formData = new FormData();
-        formData.append('multimedia', mediaResponse.data); // Buffer como archivo
+        const fileName = `imagen_${Date.now()}.${mediaType.split('/')[1]}`; // Generar nombre de archivo dinámico
+
+        formData.append('multimedia', Buffer.from(mediaResponse.data), {
+            filename: fileName,
+            contentType: mediaType,
+        });
         // Configurar los encabezados (incluyen los de form-data)
         const headers = {
             ...formData.getHeaders(), // Encabezados generados por FormData
