@@ -47,7 +47,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 3:
-                if (userMessage.includes("SI") || userMessage.includes("si")) {
+                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
                     responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
