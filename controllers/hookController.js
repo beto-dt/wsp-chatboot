@@ -10,9 +10,9 @@ const client = twilio(accountSid, authToken);
 const conversationSteps = {};
 
 const hook =  async (req, res) => {
-    const { From, Body } = req.body; // Número del usuario y mensaje
+    const { From, Body, from } = req.body; // Número del usuario y mensaje
     const userMessage = Body.toLowerCase();
-
+    console.log(from);
     // Inicializa el estado de conversación si no existe
     if (!conversationSteps[From]) {
         conversationSteps[From] = 1; // Paso inicial
