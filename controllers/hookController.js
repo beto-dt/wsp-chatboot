@@ -68,7 +68,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 4:
-                if (userMessage.includes("SI") || userMessage.includes("si")) {
+                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
                     responseMessage = " ¡Ganar es muy fácil! Regístrate y comienza a acumular tus compras. Te solicitaré datos por única vez.Por favor compártenos: Tu nombre completo (por ejemplo, Juan Pérez).";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
