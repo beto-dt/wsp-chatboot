@@ -24,7 +24,7 @@ const hook =  async (req, res) => {
     try {
         switch (conversationSteps[From]) {
             case 1:
-                responseMessage = "¡Hola! Bienvenido a AlbertoDT. ¿En qué puedo ayudarte hoy? 😊";
+                responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé , ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera";
                  await client.messages.create({
                     from: "whatsapp:+5215553512599",
                     to: "whatsapp:+593995068650",
@@ -35,29 +35,20 @@ const hook =  async (req, res) => {
                 break;
 
             case 2:
-                if (userMessage.includes("información") || userMessage.includes("producto")) {
-                    responseMessage = "Claro, el producto X tiene un costo de $100. ¿Te gustaría conocer las formas de pago?";
-                     await client.messages.create({
-                        from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
-                        body: responseMessage
-                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                await client.messages.create({
+                    contentSid: "HXcd75ecabd2ce7e8eae9fada1630fa685",
+                    contentVariables: JSON.stringify({ 1: "Name" }),
+                    from: "whatsapp:+5215553512599",
+                    to: "whatsapp:+593995068650",
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
-                } else {
-                    responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
-                    await client.messages.create({
-                        from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
-                        body: responseMessage
-                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                        .catch((error) => console.error('Error al enviar el mensaje:', error));
-                }
+
                 break;
 
             case 3:
-                if (userMessage.includes("sí") || userMessage.includes("opciones")) {
-                    responseMessage = "Aceptamos pagos con tarjeta de crédito, débito y PayPal. ¿Deseas proceder con la compra?";
+                if (userMessage.includes("SI") || userMessage.includes("si")) {
+                    responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
                         to: "whatsapp:+593995068650",
@@ -66,19 +57,19 @@ const hook =  async (req, res) => {
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
                 } else {
+                    responseMessage = " Lo sentimos, para continuar debes aceptar los Términos y Condiciones y Aviso de Privacidad.¡Presiona para aceptar!";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
                         to: "whatsapp:+593995068650",
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
-                    responseMessage = "¿Puedo ayudarte con algo más?";
                 }
                 break;
 
             case 4:
-                if (userMessage.includes("pensar")) {
-                    responseMessage = "¡Entendido! Si necesitas más información, no dudes en escribirme. 😊";
+                if (userMessage.includes("SI") || userMessage.includes("si")) {
+                    responseMessage = " ¡Ganar es muy fácil! Regístrate y comienza a acumular tus compras. Te solicitaré datos por única vez.Por favor compártenos: Tu nombre completo (por ejemplo, Juan Pérez).";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
                         to: "whatsapp:+593995068650",
