@@ -13,6 +13,9 @@ const hook =  async (req, res) => {
     const { From, Body, from } = req.body; // Número del usuario y mensaje
     const userMessage = Body.toLowerCase();
     console.log(from);
+    console.log(From);
+    console.log(req.body);
+
     // Inicializa el estado de conversación si no existe
     if (!conversationSteps[From]) {
         conversationSteps[From] = 1; // Paso inicial
