@@ -12,9 +12,6 @@ const conversationSteps = {};
 const hook =  async (req, res) => {
     const { From, Body, from } = req.body; // Número del usuario y mensaje
     const userMessage = Body.toLowerCase();
-    console.log(from);
-    console.log(From);
-    console.log(req.body);
 
     // Inicializa el estado de conversación si no existe
     if (!conversationSteps[From]) {
@@ -30,7 +27,7 @@ const hook =  async (req, res) => {
                 responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé , ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera";
                  await client.messages.create({
                     from: "whatsapp:+5215553512599",
-                    to: "whatsapp:+593995068650",
+                    to: From,
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -42,7 +39,7 @@ const hook =  async (req, res) => {
                     contentSid: "HXcd75ecabd2ce7e8eae9fada1630fa685",
                     contentVariables: JSON.stringify({ 1: "Name" }),
                     from: "whatsapp:+5215553512599",
-                    to: "whatsapp:+593995068650",
+                    to: From,
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
@@ -54,7 +51,7 @@ const hook =  async (req, res) => {
                     responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
+                        to: From,
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -63,7 +60,7 @@ const hook =  async (req, res) => {
                     responseMessage = " Lo sentimos, para continuar debes aceptar los Términos y Condiciones y Aviso de Privacidad.¡Presiona para aceptar!";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
+                        to: From,
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -75,7 +72,7 @@ const hook =  async (req, res) => {
                     responseMessage = " ¡Ganar es muy fácil! Regístrate y comienza a acumular tus compras. Te solicitaré datos por única vez.Por favor compártenos: Tu nombre completo (por ejemplo, Juan Pérez).";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
+                        to: From,
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -84,7 +81,7 @@ const hook =  async (req, res) => {
                     responseMessage = "¿Hay algo más con lo que pueda ayudarte?";
                     await client.messages.create({
                         from: "whatsapp:+5215553512599",
-                        to: "whatsapp:+593995068650",
+                        to: From,
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -95,7 +92,7 @@ const hook =  async (req, res) => {
                 responseMessage = "¡Gracias a ti! Que tengas un excelente día. 👋";
                 await client.messages.create({
                     from: "whatsapp:+5215553512599",
-                    to: "whatsapp:+593995068650",
+                    to: From,
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
@@ -106,7 +103,7 @@ const hook =  async (req, res) => {
                 responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
                 await client.messages.create({
                     from: "whatsapp:+5215553512599",
-                    to: "whatsapp:+593995068650",
+                    to: From,
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
