@@ -7,11 +7,123 @@ const { textTrack } = require('../controllers/textTrackController');
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
 const authToken = process.env.TWILIO_AUTH_TOKEN;   // Reemplaza con tu Auth Token
 const client = twilio(accountSid, authToken);
+const conversationSteps = {};
 
 const hook =  async (req, res) => {
-    const responsewsp = req.body;
-    console.log(responsewsp);
-    const variables = ['Juan'];
+    const { From, Body } = req.body; // Número del usuario y mensaje
+    const userMessage = Body.toLowerCase();
+
+    // Inicializa el estado de conversación si no existe
+    if (!conversationSteps[From]) {
+        conversationSteps[From] = 1; // Paso inicial
+    }
+
+
+    let responseMessage = "";
+
+    try {
+        switch (conversationSteps[From]) {
+            case 1:
+                responseMessage = "¡Hola! Bienvenido a AlbertoDT. ¿En qué puedo ayudarte hoy? 😊";
+                 await client.messages.create({
+                    from: "whatsapp:+5215553512599",
+                    to: "whatsapp:+593995068650",
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                conversationSteps[From]++;
+                break;
+
+            case 2:
+                if (userMessage.includes("información") || userMessage.includes("producto")) {
+                    responseMessage = "Claro, el producto X tiene un costo de $100. ¿Te gustaría conocer las formas de pago?";
+                     await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From]++;
+                } else {
+                    responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
+                    await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                }
+                break;
+
+            case 3:
+                if (userMessage.includes("sí") || userMessage.includes("opciones")) {
+                    responseMessage = "Aceptamos pagos con tarjeta de crédito, débito y PayPal. ¿Deseas proceder con la compra?";
+                    await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From]++;
+                } else {
+                    await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    responseMessage = "¿Puedo ayudarte con algo más?";
+                }
+                break;
+
+            case 4:
+                if (userMessage.includes("pensar")) {
+                    responseMessage = "¡Entendido! Si necesitas más información, no dudes en escribirme. 😊";
+                    await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From]++;
+                } else {
+                    responseMessage = "¿Hay algo más con lo que pueda ayudarte?";
+                    await client.messages.create({
+                        from: "whatsapp:+5215553512599",
+                        to: "whatsapp:+593995068650",
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                }
+                break;
+
+            case 5:
+                responseMessage = "¡Gracias a ti! Que tengas un excelente día. 👋";
+                await client.messages.create({
+                    from: "whatsapp:+5215553512599",
+                    to: "whatsapp:+593995068650",
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                delete conversationSteps[From]; // Finaliza la conversación
+                break;
+
+            default:
+                responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
+                await client.messages.create({
+                    from: "whatsapp:+5215553512599",
+                    to: "whatsapp:+593995068650",
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                break;
+        }
+
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(500).send("Error interno del servidor");
+    }
+    /*const variables = ['Juan'];
     const template = await obtenerTemplate('test');
     if (!template) {
         console.error('Template no encontrado');
@@ -47,7 +159,7 @@ const hook =  async (req, res) => {
         .catch((error) => console.error('Error al enviar el mensaje:', error));
 
     // Enviar mensaje con Twilio
-    /*try {
+   try {
         const message = await client.messages.create({
             from: 'whatsapp:+5215553512599',
             to: 'whatsapp:+593995068650',
