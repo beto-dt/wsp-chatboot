@@ -12,7 +12,7 @@ const client = twilio(accountSid, authToken);
 const conversationSteps = {};
 
 const hook =  async (req, res) => {
-    const { From, Body, from } = req.body; // Número del usuario y mensaje
+    const { From, Body, MediaUrl0, MediaContentType0 } = req.body; // Número del usuario y mensaje
     const userMessage = Body;
     console.log(userMessage);
 
@@ -92,7 +92,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 5:
-                return textTrack(responsewsp.MediaUrl0, responsewsp.MediaContentType0);
+                return textTrack(MediaUrl0, MediaContentType0);
                 delete conversationSteps[From]; // Finaliza la conversación
                 break;
 
