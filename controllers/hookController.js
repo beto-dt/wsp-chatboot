@@ -27,7 +27,7 @@ const hook =  async (req, res) => {
     try {
         switch (conversationSteps[From]) {
             case 1:
-                responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé , ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera. Deseas Participar";
+                responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé ,ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera.Deseas Participar";
                  await client.messages.create({
                     from: numFrom,
                     to: From,
