@@ -92,7 +92,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 5:
-                return textTrack(MediaUrl0, MediaContentType0);
+                return textTrack(MediaUrl0, MediaContentType0, From);
                 delete conversationSteps[From]; // Finaliza la conversación
                 break;
 

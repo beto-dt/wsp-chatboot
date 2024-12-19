@@ -4,9 +4,10 @@ const axios = require('axios');
 
 // Configura las credenciales de Twilio
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
-const authToken = process.env.TWILIO_AUTH_TOKEN;   // Reemplaza con tu Auth Token
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const numFrom = process.env.NUMEROFROM;
 const client = twilio(accountSid, authToken);
-async function textTrack(file, mediaType) {
+async function textTrack(file, mediaType, from) {
 
 
     try {
@@ -38,8 +39,8 @@ async function textTrack(file, mediaType) {
         const response = await axios.post(externalEndpoint, formData, { headers });
 
         await client.messages.create({
-            from: 'whatsapp:+5215553512599',
-            to: 'whatsapp:+593995068650',
+            from: numFrom,
+            to: from,
             body: response.data.validacionTicket.mensajeValidacion
         });
 
