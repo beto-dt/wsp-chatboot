@@ -13,7 +13,7 @@ const conversationSteps = {};
 
 const hook =  async (req, res) => {
     const { From, Body, from } = req.body; // Número del usuario y mensaje
-    const userMessage = Body.toLowerCase();
+    const userMessage = Body;
     console.log(userMessage);
 
     // Inicializa el estado de conversación si no existe
