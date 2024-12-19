@@ -92,13 +92,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 5:
-                responseMessage = "¡Gracias a ti! Que tengas un excelente día. 👋";
-                await client.messages.create({
-                    from: numFrom,
-                    to: From,
-                    body: responseMessage
-                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                return textTrack(responsewsp.MediaUrl0, responsewsp.MediaContentType0);
                 delete conversationSteps[From]; // Finaliza la conversación
                 break;
 
