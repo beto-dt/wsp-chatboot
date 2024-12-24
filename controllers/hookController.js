@@ -42,7 +42,7 @@ const hook =  async (req, res) => {
                     to: From,
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From]++;
+                conversationSteps[From] ++;
                 break;
 
             case 2:
@@ -65,7 +65,7 @@ const hook =  async (req, res) => {
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                 }
 
-                conversationSteps[From]++;
+                conversationSteps[From] ++;
                 break;
 
             case 3:
@@ -78,7 +78,7 @@ const hook =  async (req, res) => {
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
 
-                    conversationSteps[From]++;
+                    conversationSteps[From] ++;
                 }
                 break;
 
@@ -90,7 +90,7 @@ const hook =  async (req, res) => {
                         body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
-                    conversationSteps[From]++;
+                    conversationSteps[From] ++;
                 break;
 
             case 5:
@@ -101,7 +101,7 @@ const hook =  async (req, res) => {
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From]++;
+                conversationSteps[From] ++;
                 break;
                 //return textTrack(MediaUrl0, MediaContentType0, From);
                 //delete conversationSteps[From]; // Finaliza la conversación
@@ -122,20 +122,141 @@ const hook =  async (req, res) => {
                     to: From,
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From] = 6;
+                conversationSteps[From] ++;
                 break;
+            case 7:
 
-            //return textTrack(MediaUrl0, MediaContentType0, From);
-            //delete conversationSteps[From]; // Finaliza la conversación
-            default:
-                responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
-                await client.messages.create({
-                    from: numFrom,
-                    to: From,
-                    body: responseMessage
-                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                    .catch((error) => console.error('Error al enviar el mensaje:', error));
-                break;
+                if (userMessage.includes(1) ) {
+                    await client.messages.create({
+                        contentSid: "HXd5af10beca864982fe792b347003a65a",
+                        contentVariables: JSON.stringify({ 1: "Name" }),
+                        from: numFrom,
+                        to: From,
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] = 7;
+                }
+
+                if (userMessage.includes(2) ) {
+                    responseMessage = "Chatbot envía imagen de mécanica conforme al máster:\n" +
+                        "1. Compra $200.00 en productos Nestlé \n" +
+                        "participantes (consulta Productos \n" +
+                        "participantes) en Walmart \n" +
+                        "Supercenter y/o Bodega Aurrera y \n" +
+                        "envíanos una foto de tu ticket de \n" +
+                        "compra. \n" +
+                        "2.Puedes ser uno de nuestros \n" +
+                        "ganadores diarios de fabulosos \n" +
+                        "premios digitales. \n" +
+                        "¡Sigue registrando tickets y aumenta tu \n" +
+                        "oportunidad de ser uno de los ganadores \n" +
+                        "semanales o de nuestro premio final!"
+
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+
+                    responseMessage2='¿Quieres registrar un ticket?'
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage2
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] = 7;
+
+                }
+
+                if (userMessage.includes(3) ) {
+                    responseMessage = "Consulta la lista de productos participantes en: url"
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+
+                    responseMessage2='¿Quieres registrar un ticket?'
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage2
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] = 7;
+
+                }
+
+                if (userMessage.includes(4) ) {
+                    responseMessage = "Revisa los Términos y Condiciones de la promoción en: url"
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+
+                    responseMessage2='¿Quieres registrar un ticket?'
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage2
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] = 7;
+
+                }
+
+                if (userMessage.includes(5) ) {
+                    responseMessage = "Consulta nuestro Aviso de Privacidad en: url"
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+
+                    responseMessage2='¿Quieres registrar un ticket?'
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage2
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] = 7;
+
+                }
+        }
+                if (userMessage.includes(6) ) {
+                    responseMessage = "Preguntas Frecuentes: \n " +
+                        "a) ¿Tiempo de validación? Validación en un lapso no mayor a 2 horas hábiles.\n" +
+                        "b) ¿Qué debe tener mi ticket? \n" +
+                        "- Fecha completa \n" +
+                        "- Nombre de la tienda \n" +
+                        "- Productos participantes \n" +
+                        "- Costo \n" +
+                        "- Número de ticket \n" +
+                        "- Código de barras \n" +
+                        "c) ¿Qué estados participan? \n" +
+                        "Esta promoción es a nivel nacional."
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    responseMessage2='¿Quieres registrar un ticket?'
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage2
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From] =7;
+                }
         }
 
     } catch (error) {
