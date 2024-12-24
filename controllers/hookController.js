@@ -257,7 +257,6 @@ const hook =  async (req, res) => {
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From] =7;
                 }
-        }
 
     } catch (error) {
         console.error("Error:", error.message);
