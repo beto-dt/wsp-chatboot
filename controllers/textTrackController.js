@@ -35,27 +35,29 @@ async function textTrack(file, mediaType, from) {
             ...formData.getHeaders(), // Encabezados generados por FormData
         };
 
-        // Enviar la imagen al endpoint externo
-        const externalEndpoint = apiTextTrack; // Cambia por tu URL externa
-        const response = await axios.post(externalEndpoint, formData, { headers });
-        responseMessage = "Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.";
-        mensajeValidacion  = `El ${response.data.validacionTicket.validacion}  porque ${response.data.validacionTicket.mensajeValidacion}`;
-
         await client.messages.create({
             from: numFrom,
             to: from,
             body: responseMessage
         });
 
-        setTimeout(async() =>  {
-            await client.messages.create({
-                from: numFrom,
-                to: from,
-                body: mensajeValidacion
-            });
-        }, 5000);
+        // Enviar la imagen al endpoint externo
+        const externalEndpoint = apiTextTrack; // Cambia por tu URL externa
+        const response = await axios.post(externalEndpoint, formData, { headers });
+        responseMessage = "Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.";
+        mensajeValidacion  = `El ${response.data.validacionTicket.validacion}  porque ${response.data.validacionTicket.mensajeValidacion}`;
 
-        return response.data.validacionTicket.validacion;
+        if (response.data.validacionTicket.validacion.includes("Ticket rechazado")) {
+            responseMessage='Ticket u Orden de pedido inválido. Intenta ingresar tu ticket nuevamente.'
+            setTimeout(async () => {
+                await client.messages.create({
+                    from: numFrom,
+                    to: From,
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+            }, 5000);
+        }
 
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
