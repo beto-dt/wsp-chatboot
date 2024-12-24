@@ -55,6 +55,8 @@ async function textTrack(file, mediaType, from) {
             });
         }, 5000);
 
+        return response.data.validacionTicket.validacion;
+
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
     }

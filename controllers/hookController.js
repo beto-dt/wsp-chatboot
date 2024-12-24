@@ -332,7 +332,8 @@ const hook =  async (req, res) => {
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
                 setTimeout(() => {
-                    textTrack(MediaUrl0,MediaContentType0,From);
+                    const resultTextTrack = textTrack(MediaUrl0,MediaContentType0,From);
+                    console.log(resultTextTrack);
                 }, 5000);
                 conversationSteps[From] = 10;
                 break;
@@ -347,7 +348,8 @@ const hook =  async (req, res) => {
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
                 setTimeout(() => {
-                    textTrack(MediaUrl0,MediaContentType0,From);
+                    const resultTextTrack = textTrack(MediaUrl0,MediaContentType0,From);
+                    console.log(resultTextTrack);
                 }, 5000);
                 conversationSteps[From] = 11;
                 break
