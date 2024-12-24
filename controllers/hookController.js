@@ -46,7 +46,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 2:
-                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
+                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Si")) {
                     responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
                         from: numFrom,
@@ -69,7 +69,7 @@ const hook =  async (req, res) => {
                 break;
 
             case 3:
-                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
+                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Si")) {
                     responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
                         from: numFrom,
