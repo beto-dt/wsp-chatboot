@@ -6,6 +6,7 @@ const axios = require('axios');
 const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplaza con tu Account SID
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const numFrom = process.env.NUMEROFROM;
+const apiTextTrack = process.env.TEXTTRACK; // Reemplaza con tu Account SID
 const client = twilio(accountSid, authToken);
 async function textTrack(file, mediaType, from) {
 
@@ -35,13 +36,20 @@ async function textTrack(file, mediaType, from) {
         };
 
         // Enviar la imagen al endpoint externo
-        const externalEndpoint = 'https://general.qa-advantagemkt.mx/demo-textract/bachoco-core/app/validaTextract'; // Cambia por tu URL externa
+        const externalEndpoint = apiTextTrack; // Cambia por tu URL externa
         const response = await axios.post(externalEndpoint, formData, { headers });
+        responseMessage = "Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.";
+        mensajeValidacion  = `El ${response.data.validacionTicket.validacion}  porque ${response.data.validacionTicket.mensajeValidacion}`;
 
         await client.messages.create({
             from: numFrom,
             to: from,
-            body: response.data.validacionTicket.mensajeValidacion
+            body: responseMessage
+        });
+        await client.messages.create({
+            from: numFrom,
+            to: from,
+            body: mensajeValidacion
         });
 
     } catch (error) {

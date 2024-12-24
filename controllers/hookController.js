@@ -327,7 +327,9 @@ const hook =  async (req, res) => {
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From] = 13;
+
+                textTrack(MediaUrl0,MediaContentType0,From);
+                conversationSteps[From] = 10;
                 break;
 
             case 11:
@@ -338,19 +340,10 @@ const hook =  async (req, res) => {
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From] = 13;
+                textTrack(MediaUrl0,MediaContentType0,From);
+                conversationSteps[From] = 11;
                 break
 
-            case 13:
-                responseMessage='Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.'
-                await client.messages.create({
-                    from: numFrom,
-                    to: From,
-                    body: responseMessage
-                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                    .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From] = 13;
-                break;
         }
     } catch (error) {
         console.error("Error:", error.message);
