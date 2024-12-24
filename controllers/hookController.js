@@ -360,12 +360,14 @@ const hook =  async (req, res) => {
                     await textTrack(MediaUrl0,MediaContentType0,From).then(async (data) =>{
                         if (data.includes("Ticket rechazado")) {
                             responseMessage='Ticket u Orden de pedido inválido. Intenta ingresar tu ticket nuevamente.'
-                            await client.messages.create({
-                                from: numFrom,
-                                to: From,
-                                body: responseMessage
-                            }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                                .catch((error) => console.error('Error al enviar el mensaje:', error));
+                            setTimeout(async () => {
+                                await client.messages.create({
+                                    from: numFrom,
+                                    to: From,
+                                    body: responseMessage
+                                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                            }, 5000);
                         }
                     });
                 }, 5000);
