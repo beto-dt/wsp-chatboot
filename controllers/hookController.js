@@ -331,9 +331,8 @@ const hook =  async (req, res) => {
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
-                setTimeout(() => {
-                    const resultTextTrack = textTrack(MediaUrl0,MediaContentType0,From);
-                    console.log(resultTextTrack);
+                setTimeout(async () => {
+                    await textTrack(MediaUrl0,MediaContentType0,From).then((data) => console.log(data));
                 }, 5000);
                 conversationSteps[From] = 10;
                 break;
@@ -347,9 +346,8 @@ const hook =  async (req, res) => {
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
-                setTimeout(() => {
-                    const resultTextTrack = textTrack(MediaUrl0,MediaContentType0,From);
-                    console.log(resultTextTrack);
+                setTimeout(async () => {
+                    await textTrack(MediaUrl0,MediaContentType0,From).then((data) => console.log(data));
                 }, 5000);
                 conversationSteps[From] = 11;
                 break
