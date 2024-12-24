@@ -50,7 +50,7 @@ async function textTrack(file, mediaType, from) {
             setTimeout(async () => {
                 await client.messages.create({
                     from: numFrom,
-                    to: From,
+                    to: from,
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
