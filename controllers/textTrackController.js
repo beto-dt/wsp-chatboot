@@ -46,11 +46,14 @@ async function textTrack(file, mediaType, from) {
             to: from,
             body: responseMessage
         });
-        await client.messages.create({
-            from: numFrom,
-            to: from,
-            body: mensajeValidacion
-        });
+
+        setTimeout(async() =>  {
+            await client.messages.create({
+                from: numFrom,
+                to: from,
+                body: mensajeValidacion
+            });
+        }, 5000);
 
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);

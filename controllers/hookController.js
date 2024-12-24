@@ -328,7 +328,9 @@ const hook =  async (req, res) => {
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
-                textTrack(MediaUrl0,MediaContentType0,From);
+                setTimeout(() => {
+                    textTrack(MediaUrl0,MediaContentType0,From);
+                }, 5000);
                 conversationSteps[From] = 10;
                 break;
 
@@ -340,7 +342,10 @@ const hook =  async (req, res) => {
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                textTrack(MediaUrl0,MediaContentType0,From);
+
+                setTimeout(() => {
+                    textTrack(MediaUrl0,MediaContentType0,From);
+                }, 5000);
                 conversationSteps[From] = 11;
                 break
 
