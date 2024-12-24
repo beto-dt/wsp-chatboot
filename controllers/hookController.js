@@ -115,13 +115,16 @@ const hook =  async (req, res) => {
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
 
-                await client.messages.create({
-                    contentSid: "HX583690d64bda7ede903e3a20bf96c426",
-                    contentVariables: JSON.stringify({ 1: "Name" }),
-                    from: numFrom,
-                    to: From,
-                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                setTimeout(async () => {
+                    await client.messages.create({
+                        contentSid: "HX583690d64bda7ede903e3a20bf96c426",
+                        contentVariables: JSON.stringify({ 1: "Name" }),
+                        from: numFrom,
+                        to: From,
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                }, 5000);
+
                 conversationSteps[From] ++;
                 break;
 
