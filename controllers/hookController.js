@@ -135,7 +135,7 @@ const hook =  async (req, res) => {
                         to: From,
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
-                    conversationSteps[From] = ++;
+                    conversationSteps[From]  ++;
                 }
 
                 if (userMessage.includes(2) ) {
