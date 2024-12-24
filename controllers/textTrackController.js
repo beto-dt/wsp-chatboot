@@ -34,7 +34,7 @@ async function textTrack(file, mediaType, from) {
         const headers = {
             ...formData.getHeaders(), // Encabezados generados por FormData
         };
-
+        responseMessage = "Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.";
         await client.messages.create({
             from: numFrom,
             to: from,
@@ -44,8 +44,6 @@ async function textTrack(file, mediaType, from) {
         // Enviar la imagen al endpoint externo
         const externalEndpoint = apiTextTrack; // Cambia por tu URL externa
         const response = await axios.post(externalEndpoint, formData, { headers });
-        responseMessage = "Importante: El horario registrado en el sistema puede variar debido a la calidad de la conexión, tiempos de respuesta del sistema o situaciones imprevistas. Gracias por tu comprensión.";
-        mensajeValidacion  = `El ${response.data.validacionTicket.validacion}  porque ${response.data.validacionTicket.mensajeValidacion}`;
 
         if (response.data.validacionTicket.validacion.includes("Ticket rechazado")) {
             responseMessage='Ticket u Orden de pedido inválido. Intenta ingresar tu ticket nuevamente.'
