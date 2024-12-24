@@ -335,6 +335,7 @@ const hook =  async (req, res) => {
                     await textTrack(MediaUrl0,MediaContentType0,From);
                 }, 5000);
 
+                setTimeout(async () => {
                 responseMessage3='¿Deseas registrar otro ticket u Orden de pedido?'
                 await client.messages.create({
                     from: numFrom,
@@ -342,6 +343,7 @@ const hook =  async (req, res) => {
                     body: responseMessage3
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
+                }, 10000);
                 conversationSteps[From] = 10;
                 break;
 
