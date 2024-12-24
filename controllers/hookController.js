@@ -47,11 +47,11 @@ const hook =  async (req, res) => {
 
             case 2:
                 if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Si")) {
-                    responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
+                        contentSid: "HXd5af10beca864982fe792b347003a65a",
+                        contentVariables: JSON.stringify({ 1: "Name" }),
                         from: numFrom,
                         to: From,
-                        body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
