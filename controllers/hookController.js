@@ -27,26 +27,45 @@ const hook =  async (req, res) => {
     try {
         switch (conversationSteps[From]) {
             case 1:
-                responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé ,ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera.Deseas Participar";
+                responseMessage = "¡Hola! Gracias por ser parte de la promoción Con Nestlé , ganar sabe bien en Walmart Supercenter y/o Bodega Aurrera .";
                  await client.messages.create({
                     from: numFrom,
                     to: From,
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From]++;
-                break;
 
-            case 2:
                 await client.messages.create({
-                    contentSid: "HXcd75ecabd2ce7e8eae9fada1630fa685",
+                    contentSid: "HX021c3bd1d8470cce5d8992b5e39ad608",
                     contentVariables: JSON.stringify({ 1: "Name" }),
                     from: numFrom,
                     to: From,
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                    conversationSteps[From]++;
+                conversationSteps[From]++;
+                break;
 
+            case 2:
+                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
+                    responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                    conversationSteps[From]++;
+                } else {
+                    responseMessage = "  Lo sentimos, para continuar debes aceptar los Términos y Condiciones y Aviso de Privacidad. ¡Presiona SÍ para aceptar!";
+                    await client.messages.create({
+                        from: numFrom,
+                        to: From,
+                        body: responseMessage
+                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                        .catch((error) => console.error('Error al enviar el mensaje:', error));
+                }
+
+                conversationSteps[From]++;
                 break;
 
             case 3:
@@ -59,19 +78,10 @@ const hook =  async (req, res) => {
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
-                } else {
-                    responseMessage = " Lo sentimos, para continuar debes aceptar los Términos y Condiciones y Aviso de Privacidad.¡Presiona para aceptar!";
-                    await client.messages.create({
-                        from: numFrom,
-                        to: From,
-                        body: responseMessage
-                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                        .catch((error) => console.error('Error al enviar el mensaje:', error));
                 }
                 break;
 
             case 4:
-                if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Sí")) {
                     responseMessage = " ¡Ganar es muy fácil! Regístrate y comienza a acumular tus compras. Te solicitaré datos por única vez.Por favor compártenos: Tu nombre completo (por ejemplo, Juan Pérez).";
                     await client.messages.create({
                         from: numFrom,
@@ -80,22 +90,44 @@ const hook =  async (req, res) => {
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
                     conversationSteps[From]++;
-                } else {
-                    responseMessage = "¿Hay algo más con lo que pueda ayudarte?";
-                    await client.messages.create({
-                        from: numFrom,
-                        to: From,
-                        body: responseMessage
-                    }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
-                        .catch((error) => console.error('Error al enviar el mensaje:', error));
-                }
                 break;
 
             case 5:
-                return textTrack(MediaUrl0, MediaContentType0, From);
-                delete conversationSteps[From]; // Finaliza la conversación
+                responseMessage = "Compártenos:Email (por ejemplo,juan.perez@email.com).";
+                await client.messages.create({
+                    from: numFrom,
+                    to: From,
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                conversationSteps[From]++;
+                break;
+                //return textTrack(MediaUrl0, MediaContentType0, From);
+                //delete conversationSteps[From]; // Finaliza la conversación
+
+            case 6:
+                responseMessage = "¡Muchas gracias por registrarte! Disfruta con recetas Nestlé (IMAGEN DE RECETARIO) ¿En qué podemos ayudarte?";
+                await client.messages.create({
+                    from: numFrom,
+                    to: From,
+                    body: responseMessage
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                conversationSteps[From]++;
                 break;
 
+            case 7:
+                await client.messages.create({
+                    contentSid: "HX583690d64bda7ede903e3a20bf96c426",
+                    contentVariables: JSON.stringify({ 1: "Name" }),
+                    from: numFrom,
+                    to: From,
+                }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
+                    .catch((error) => console.error('Error al enviar el mensaje:', error));
+                conversationSteps[From] = 7;
+                break;
+            //return textTrack(MediaUrl0, MediaContentType0, From);
+            //delete conversationSteps[From]; // Finaliza la conversación
             default:
                 responseMessage = "Lo siento, no entendí tu solicitud. ¿Puedes reformularlo?";
                 await client.messages.create({
