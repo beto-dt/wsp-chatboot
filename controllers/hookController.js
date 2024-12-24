@@ -70,13 +70,14 @@ const hook =  async (req, res) => {
 
             case 3:
                 if (userMessage.includes("SI") || userMessage.includes("si") || userMessage.includes("Si")) {
-                    responseMessage = "¿Te gustaría recibir noticias y novedades de Nestlé y sus marcas?";
                     await client.messages.create({
+                        contentSid: "HXbe1a2210116de1a50b879e1a47252efb",
+                        contentVariables: JSON.stringify({ 1: "Name" }),
                         from: numFrom,
                         to: From,
-                        body: responseMessage
                     }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                         .catch((error) => console.error('Error al enviar el mensaje:', error));
+
                     conversationSteps[From]++;
                 }
                 break;
@@ -113,10 +114,7 @@ const hook =  async (req, res) => {
                     body: responseMessage
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From]++;
-                break;
 
-            case 7:
                 await client.messages.create({
                     contentSid: "HX583690d64bda7ede903e3a20bf96c426",
                     contentVariables: JSON.stringify({ 1: "Name" }),
@@ -124,8 +122,9 @@ const hook =  async (req, res) => {
                     to: From,
                 }).then((message) => console.log('Mensaje enviado con SID:', message.sid))
                     .catch((error) => console.error('Error al enviar el mensaje:', error));
-                conversationSteps[From] = 7;
+                conversationSteps[From] = 6;
                 break;
+
             //return textTrack(MediaUrl0, MediaContentType0, From);
             //delete conversationSteps[From]; // Finaliza la conversación
             default:
